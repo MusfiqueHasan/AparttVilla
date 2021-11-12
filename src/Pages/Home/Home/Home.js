@@ -1,9 +1,14 @@
 import React from 'react';
+import Navbar from '../../SharedPage/Navbar/Navbar';
+import Banner from '../Banner/Banner';
+import Divisions from '../Divisions/Divisions';
 
 const Home = () => {
     return (
         <div>
-            <h1>this is home</h1>
+            <Navbar />
+            <Banner />
+            <Divisions />
         </div>
     );
 };
