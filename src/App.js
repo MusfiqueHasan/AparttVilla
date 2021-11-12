@@ -6,6 +6,8 @@ import {
 // import './App.css';
 import AuthProvider from "./context/AuthProvider";
 import Home from './Pages/Home/Home/Home';
+import LoginMain from "./Pages/Login/LoginMain/LoginMain";
+import Register from "./Pages/Login/Register/Register";
 import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 
 function App() {
@@ -19,6 +21,12 @@ function App() {
             </Route>
             <Route path="/home">
               <Home />
+            </Route>
+            <Route path="/login">
+              <LoginMain />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
           </Switch>
         </Router>
