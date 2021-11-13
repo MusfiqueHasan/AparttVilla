@@ -80,7 +80,7 @@ const Divisions = () => {
 
             </Grid>
             <Grid item xs={12} md={3}>
-                <Typography sx={isMobile ? {} : { fontSize: 50, fontWeight: 'bold' }}>
+                <Typography sx={isMobile ? {} : { fontSize: 50, fontWeight: 'bold',fontFamily: 'fantasy' }}>
                     Sunny Loft Apartments
                 </Typography>
                 <Typography sx={isMobile ? {} : { fontSize: 15, width: '80%', textAlign: 'justify' }}>

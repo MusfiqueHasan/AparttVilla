@@ -10,6 +10,7 @@ import Home from './Pages/Home/Home/Home';
 import LoginMain from "./Pages/Login/LoginMain/LoginMain";
 import Register from "./Pages/Login/Register/Register";
 import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
+import PropertiesMain from "./Pages/Properties/PropertiesMain";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <Route path="/dashboard">
               <Dashboard />
+            </Route>
+            <Route path="/properties">
+              <PropertiesMain />
             </Route>
           </Switch>
         </Router>

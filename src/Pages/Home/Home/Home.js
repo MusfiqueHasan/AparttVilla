@@ -2,7 +2,9 @@ import React from 'react';
 import Navbar from '../../SharedPage/Navbar/Navbar';
 import Banner from '../Banner/Banner';
 import Divisions from '../Divisions/Divisions';
+import PropertiesBanner from '../PropertiesBanner/PropertiesBanner';
 import PropertiesInHome from '../PropertiesInHome/PropertiesInHome';
+import Testimonial from '../Testimonial/Testimonial';
 
 const Home = () => {
     return (
@@ -10,7 +12,9 @@ const Home = () => {
             <Navbar />
             <Banner />
             <Divisions />
-            <PropertiesInHome/>
+            <PropertiesBanner />
+            <PropertiesInHome />
+            <Testimonial />
         </div>
     );
 };

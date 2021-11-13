@@ -85,6 +85,7 @@ const useFirebase = () => {
                 getIdToken(user)
                     .then(idToken => {
                         setToken(idToken)
+                        console.log(idToken)
                     })
             } else {
                 setUser({})
@@ -96,7 +97,7 @@ const useFirebase = () => {
     }, [auth])
 
     useEffect(() => {
-        axios.get(`https://dry-ocean-42817.herokuapp.com/users/${user.email}`)
+        axios.get(`http://localhost:5000/users/${user.email}`)
             .then(res => {
                 setAdmin(res.data.admin)
             })
@@ -114,14 +115,14 @@ const useFirebase = () => {
 
     const savedUser = (email, displayName) => {
         const user = { email, displayName };
-        axios.post('https://dry-ocean-42817.herokuapp.com/users', user)
+        axios.post('http://localhost:5000/users', user)
             .then(res => {
 
             })
     }
     const savedUserForGoogle = (email, displayName) => {
         const user = { email, displayName };
-        axios.put('https://dry-ocean-42817.herokuapp.com/users', user)
+        axios.put('http://localhost:5000/users', user)
             .then(res => {
 
             })

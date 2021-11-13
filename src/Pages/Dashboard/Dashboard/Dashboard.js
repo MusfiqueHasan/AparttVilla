@@ -68,7 +68,7 @@ const Dashboard = (props) => {
             }
 
             <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textDecoration: 'none', color: 'black', marginTop: '100px' }}>
-                <Link to="/appointment"><Button color="inherit">All properties</Button></Link>
+                <Link to="/properties"><Button color="inherit">All properties</Button></Link>
                 <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
                 {
                     admin && <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textDecoration: 'none', color: 'black' }}>

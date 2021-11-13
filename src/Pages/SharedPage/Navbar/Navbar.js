@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         backgroundColor: 'white',
         width: '100vw',
         zIndex: 2,
-        boxShadow: ' 0 1px 10px rgba(0, 0, 0, 0.4)'
+        // boxShadow: ' 0 1px 10px rgba(0, 0, 0, 0.4)'
     },
     innerNavbar: {
         display: 'flex',
@@ -20,7 +20,8 @@ const useStyles = makeStyles({
     },
     allLink: {
         color: 'black',
-        textDecoration: 'none'
+        textDecoration: 'none',
+        fontFamily: 'Monospace'
     }
 
 })
@@ -43,14 +44,18 @@ const Navbar = () => {
                 <Box style={{ width: '70%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
                     <Box>
                         <Link to="/home" className={classes.allLink}>
-                            <Button color="inherit">Home</Button>
+                            <Button color="inherit" style={{ fontFamily: 'initial', marginRight: '10px' }}>Home</Button>
                         </Link>
-                        <Link to="/appointment" className={classes.allLink}>
-                            <Button color="inherit">All Properties</Button>
+                        <Link to="/properties" className={classes.allLink}>
+                            <Button color="inherit" style={{ fontFamily: 'initial', marginRight: '10px' }}>All Properties</Button>
                         </Link>
                         {
-                            user?.email && <NavLink style={{ textDecoration: 'none', color: 'black' }} to="/dashboard">
-                                <Button color="inherit">Dashboard</Button>
+                            user?.email && <NavLink
+                                to="/dashboard"
+                                style={{ textDecoration: 'none', color: 'black', }}
+
+                            >
+                                <Button color="inherit" style={{ fontFamily: 'initial' }}>Dashboard</Button>
                             </NavLink>
                         }
                     </Box>
@@ -59,7 +64,7 @@ const Navbar = () => {
                             <Box style={{ display: 'flex', alignItems: 'center' }}>
                                 <Button onClick={logOut}
                                     sx={{ px: 3 }}
-                                    style={{ backgroundColor: '#006266', color: 'white' }}
+                                    style={{ backgroundColor: '#006266', color: 'white', fontFamily: 'initial' }}
                                 >logout</Button>
                                 <NavLink to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
                                     <Tooltip title="profile" placement="bottom">
@@ -78,7 +83,7 @@ const Navbar = () => {
                             <NavLink style={{ textDecoration: 'none', color: 'black' }} to="/login">
                                 <Button color="inherit"
                                     sx={{ px: 3 }}
-                                    style={{ backgroundColor: '#006266', color: 'white' }}
+                                    style={{ backgroundColor: '#006266', color: 'white', fontFamily: 'initial' }}
                                 >login</Button>
                             </NavLink>
                     }

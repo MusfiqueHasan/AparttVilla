@@ -1,39 +1,37 @@
-import { Card, CardContent, CardMedia, Container, Fab, IconButton, Typography } from '@mui/material';
-import { Box } from '@mui/system';
 import React from 'react';
-import img from '../../../images/login.jpg'
-import AddIcon from '@mui/icons-material/Add';
+import { Box } from '@mui/system';
+import LoopIcon from '@mui/icons-material/Loop';
+import { Button, Container, Divider, Grid, Typography } from '@mui/material';
+
+import { NavLink } from 'react-router-dom';
+import Properties from '../../Properties/Properties';
+
 const PropertiesInHome = () => {
 
     return (
-        <Container sx={{ my: 10 }} style={{ display: 'flex' }}>
-            <Card sx={{display: 'flex', alignItems: 'center',  width: 600, height: 300 }} style={{position:'relative', zIndex:1}}>
-                <Box sx={{display: 'flex', alignItems: 'center',}}>
-                    <CardMedia
-                        component="img"
-                        sx={{ width: 300 }}
-                        image={img}
-                        alt="Live from space album cover"
-                    />
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <CardContent sx={{ flex: '1 0 auto' }}>
-                            <Typography component="div" variant="h5">
-                                Live From Space
-                            </Typography>
-                            <Typography variant="subtitle1" color="text.secondary" component="div">
-                                Mac Miller
-                            </Typography>
-                        </CardContent>
-                    </Box>
+        <Box style={{ backgroundColor: '#f5f6fa' }}>
+            <Container sx={{  py:3}}  >
+                <Grid container spacing={2} sx={{  }}>
+                    <Properties />
+                    <Properties />
+                    <Properties />
+                    <Properties />
+                    <Properties />
+                    <Properties />
+                </Grid>
+                <Box sx={{ display: 'flex', justifyContent: 'center', pb:5 }}>
+                    <NavLink style={{ textDecoration: 'none', color: 'black' }} to="/properties">
+                        <Button color="inherit"
+                            style={{ color: 'white', backgroundColor: '#218c74', fontFamily: 'serif' }}
+                            sx={{ px: 3 }}
+                        >
+                            <LoopIcon sx={{ mr: 1 }} />
+                            See all featured Properties
+                        </Button>
+                    </NavLink>
                 </Box>
-                <Box style={{position:'absolute',}}>
-                    <Fab color="primary" aria-label="add" >
-                        <AddIcon />
-                    </Fab>
-                </Box>
-
-            </Card>
-        </Container>
+            </Container>
+        </Box>
     );
 };
 
