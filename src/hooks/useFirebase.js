@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import initializeFirebase from "../Firebase/firebase.init";
 import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, getIdToken } from "firebase/auth";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 
 
@@ -16,6 +17,7 @@ const useFirebase = () => {
     const [token, setToken] = useState('')
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
+   
 
     const registerUser = (email, password, name, history) => {
         setIsLoading(true)
@@ -48,7 +50,7 @@ const useFirebase = () => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const destination = location?.state?.from || '/'
+                const destination = '/dashboard'
                 history.replace(destination)
                 setAuthError('')
 
@@ -67,7 +69,7 @@ const useFirebase = () => {
                 const user = result.user;
                 savedUserForGoogle(user.email, user.displayName)
                 setAuthError('')
-                const destination = location?.state?.from || '/'
+                const destination =  '/dashboard'
                 history.replace(destination)
 
             }).catch((error) => {
@@ -106,9 +108,8 @@ const useFirebase = () => {
     const logOut = () => {
         setIsLoading(true)
         signOut(auth).then(() => {
-            // Sign-out successful.
+            setUser({})
         }).catch((error) => {
-            // An error happened.
         })
             .finally(() => setIsLoading(false))
     }

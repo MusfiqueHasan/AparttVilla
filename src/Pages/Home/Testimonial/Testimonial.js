@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Rating, Typography } from '@mui/material';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import Slider from "react-slick";
 import { Box } from '@mui/system';
 import useAuth from '../../../hooks/useAuth';
+import axios from 'axios';
 const Testimonial = () => {
+
+    const [reviewInfo, setReviewInfo] = useState([])
+    useEffect(() => {
+
+        axios.get('http://localhost:5000/reviews')
+            .then(res => {
+                setReviewInfo(res.data)
+            })
+    }, [])
+
     const settings = {
         dots: true,
         infinite: true,
@@ -27,35 +38,32 @@ const Testimonial = () => {
                     <FormatQuoteIcon sx={{ fontSize: '100px' }} style={{ color: 'gray' }} />
                 </Box>
                 <Slider {...settings}>
-                    <Container >
-                        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '300px', marginX: '100px' }}>
-                            <Typography sx={{ textAlign: 'center' }}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos assumenda autem illum molestias quidem ex ducimus dolores error dolorem accusamus perspiciatis, ea suscipit iusto doloribus.
-                            </Typography>
-                            <Box sx={{ my: 2 }}>
-                                <img src={user.photoURL} alt="" width={70} style={{ borderRadius: '50%', }} />
-                            </Box>
-                            <Typography>Musfique Hasan</Typography>
-                            <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
-                        </Box>
-                    </Container>
 
-                    <div>
-                        <h3>2</h3>
-                    </div>
-                    <div>
-                        <h3>3</h3>
-                    </div>
-                    <div>
-                        <h3>4</h3>
-                    </div>
-                    <div>
-                        <h3>5</h3>
-                    </div>
-                    <div>
-                        <h3>6</h3>
-                    </div>
+                    {reviewInfo.map(review => {
+
+                        return (
+                            <Container>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '300px', marginX: '100px' }}>
+                                    <Typography sx={{ textAlign: 'center' }}>
+                                        {review.review}
+                                    </Typography>
+                                    <Box sx={{ my: 2 }}>
+                                        <img src={review.image } alt="" width={70} style={{ borderRadius: '50%', }} />
+                                    </Box>
+                                    <Typography>{review.name}</Typography>
+                                    <Rating name="half-rating-read" defaultValue={review.rating} precision={0.5} readOnly />
+                                </Box>
+                            </Container>
+
+                        )
+                    })
+
+
+                    }
+
+
                 </Slider>
+
             </Container>
         </Box>
     );

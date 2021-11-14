@@ -1,10 +1,12 @@
 import React from 'react';
+import Navbar from '../SharedPage/Navbar/Navbar';
 
 const PropertiesMain = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <Navbar />
+
+        </>
     );
 };
 

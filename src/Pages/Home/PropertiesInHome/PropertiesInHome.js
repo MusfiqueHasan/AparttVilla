@@ -5,21 +5,23 @@ import { Button, Container, Divider, Grid, Typography } from '@mui/material';
 
 import { NavLink } from 'react-router-dom';
 import Properties from '../../Properties/Properties';
+import useProperties from '../../../hooks/useProperties';
 
 const PropertiesInHome = () => {
+    const [propertyInfo] = useProperties(true)
 
     return (
         <Box style={{ backgroundColor: '#f5f6fa' }}>
-            <Container sx={{  py:3}}  >
-                <Grid container spacing={2} sx={{  }}>
-                    <Properties />
-                    <Properties />
-                    <Properties />
-                    <Properties />
-                    <Properties />
-                    <Properties />
+            <Container sx={{ py: 3 }}  >
+                <Grid container spacing={2} sx={{}}>
+                    {
+                        propertyInfo.map(property => <Properties property={property} />)
+
+                    }
+
+
                 </Grid>
-                <Box sx={{ display: 'flex', justifyContent: 'center', pb:5 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', pb: 5 }}>
                     <NavLink style={{ textDecoration: 'none', color: 'black' }} to="/properties">
                         <Button color="inherit"
                             style={{ color: 'white', backgroundColor: '#218c74', fontFamily: 'serif' }}

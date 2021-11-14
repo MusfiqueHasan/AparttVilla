@@ -65,13 +65,15 @@ const Navbar = () => {
                                 <Button onClick={logOut}
                                     sx={{ px: 3 }}
                                     style={{ backgroundColor: '#006266', color: 'white', fontFamily: 'initial' }}
-                                >logout</Button>
+                                >
+                                    logout
+                                </Button>
                                 <NavLink to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
                                     <Tooltip title="profile" placement="bottom">
                                         <Box style={{ display: 'flex', alignItems: 'center', }}>
                                             {user.photoURL ?
                                                 <img src={user.photoURL} alt="" width={50} style={{ borderRadius: '50%', marginLeft: '20px' }} />
-                                                : <AccountCircleIcon className="rounded-full w-14 h-14" />
+                                                : <AccountCircleIcon style={{ marginLeft: '20px', width: '50px', height: '50px' }} />
                                             }
                                             <Typography style={{ fontSize: '14px', marginLeft: '10px' }} >{user.displayName}</Typography>
                                         </Box>

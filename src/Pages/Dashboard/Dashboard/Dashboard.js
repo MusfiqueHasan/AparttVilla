@@ -1,6 +1,8 @@
-import { AppBar, Button, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Tooltip, Typography } from '@mui/material';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { AppBar, Button, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Tooltip, Typography, useMediaQuery } from '@mui/material';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
+import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined';
+import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box } from '@mui/system';
 import React from 'react';
@@ -15,11 +17,37 @@ import {
 import AdminRoute from '../AdminRoute/AdminRoute';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import logo from '../../../images/logo.webp'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import CommonPage from '../../SharedPage/CommonPage/CommonPage';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ManageAllSale from '../ManageAllSale/ManageAllSale';
+import ManageProperties from '../ManageProperties/ManageProperties';
+import Payment from '../Payment/Payment';
+import MyBuyingList from '../MyBuyingList/MyBuyingList';
+import Review from '../Review/Review';
+import { makeStyles } from '@mui/styles'
+import AddProperties from '../AddProperties/AddProperties';
+
+
+
+
 
 const drawerWidth = 300;
+const useStyles = makeStyles({
+    allLink: {
+        textDecoration: 'none',
+        color: '#006266'
+
+    },
+
+
+
+
+})
 
 const Dashboard = (props) => {
+    const classes = useStyles()
+    const isMobile = useMediaQuery('(max-width:600px)')
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let { path, url } = useRouteMatch();
@@ -41,15 +69,15 @@ const Dashboard = (props) => {
             {
                 user?.email &&
                 <Box
-                 style={{  backgroundColor:'#dfe6e9',borderRadius:'10px' }}
-                 sx={{mx:2, py:2,}}
-                 >
+                    style={{ backgroundColor: '#dfe6e9', borderRadius: '10px' }}
+                    sx={{ mx: 2, py: 2, }}
+                >
                     <NavLink to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
                         <Tooltip title="profile" placement="bottom">
                             <Box style={{ display: 'flex', alignItems: 'center', }}>
                                 {user.photoURL ?
                                     <img src={user.photoURL} alt="" width={50} style={{ borderRadius: '10px', marginLeft: '20px' }} />
-                                    : <AccountCircleIcon className="rounded-full w-14 h-14" />
+                                    : <AccountBoxOutlinedIcon style={{ marginLeft: '20px', width: '50px', height: '50px' }} />
                                 }
                                 <Box>
                                     <Typography style={{ fontSize: '14px', marginLeft: '10px' }} >
@@ -67,27 +95,54 @@ const Dashboard = (props) => {
 
             }
 
-            <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textDecoration: 'none', color: 'black', marginTop: '100px' }}>
-                <Link to="/properties"><Button color="inherit">All properties</Button></Link>
-                <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
+            <Box style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', marginTop: '50px' }}>
+
+                {user.email && !admin && <Box style={{ display: 'flex', flexDirection: 'column', }}>
+
+                    <Link to={`${url}/payment`} className={classes.allLink}>
+                        <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>
+                            <PaymentOutlinedIcon sx={{ mr: 1 }} />
+                            <span> Payment</span>
+                        </Button>
+                    </Link>
+                    <Link to={`${url}`} className={classes.allLink}>
+                        <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>
+                            <BusinessCenterOutlinedIcon sx={{ mr: 1, my: 2 }} />
+                            <span> My Buying List</span>
+                        </Button>
+                    </Link>
+                    <Link to={`${url}/review`} className={classes.allLink}>
+                        <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>
+                            <RateReviewOutlinedIcon sx={{ mr: 1 }} />
+                            <span>Review</span>
+                        </Button>
+                    </Link>
+                </Box>}
                 {
-                    admin && <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textDecoration: 'none', color: 'black' }}>
-                        <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
-                        <Link to={`${url}/addDoctor`}><Button color="inherit">Add Doctor</Button></Link>
+                    admin && <Box style={{ display: 'flex', flexDirection: 'column', }}>
+                        <Link to={`${url}`} className={classes.allLink}>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Manage All Sales</Button>
+                        </Link>
+                        <Link to={`${url}/addProperties`} className={classes.allLink}>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Add Property</Button>
+                        </Link>
+                        <Link to={`${url}/makeAdmin`} className={classes.allLink}>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Make Admin</Button>
+                        </Link>
+                        <Link to={`${url}/manageProperties`} className={classes.allLink}>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Manage Properties</Button>
+                        </Link>
                     </Box>
 
                 }
+                <Button onClick={logOut}
+                    sx={{ px: 3 }}
+                    style={{ color: 'black', fontFamily: 'initial' }}
+                >
+                    <LogoutIcon sx={{ mr: 1 }} />
+                    logout
+                </Button>
             </Box>
-            {/* <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List> */}
 
         </Box>
     );
@@ -104,7 +159,7 @@ const Dashboard = (props) => {
                 }}
             >
                 <Toolbar style={{
-                    backgroundColor: '#006266', height: '15vh'
+                    backgroundColor: '#079992', height: '10vh'
                 }}>
                     <IconButton
                         color="inherit"
@@ -115,9 +170,8 @@ const Dashboard = (props) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Dashboard
-                    </Typography>
+                    <AdminPanelSettingsIcon sx={{ mr: 1 }} />
+                    {admin ? 'Admin Panel' : 'User Dashboard'}
                 </Toolbar>
             </AppBar>
             <Box
@@ -157,17 +211,35 @@ const Dashboard = (props) => {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                <Switch>
-                    <Route exact path={path}>
-                        <MakeAdmin />
-                    </Route>
-                    <AdminRoute path={`${path}/makeAdmin`}>
-                        <MakeAdmin />
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/addDoctor`}>
-
-                    </AdminRoute>
-                </Switch>
+                {admin &&
+                    <Switch>
+                        <AdminRoute exact path={`${path}`}>
+                            <ManageAllSale />
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/addProperties`}>
+                            <AddProperties />
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/makeAdmin`}>
+                            <MakeAdmin />
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/manageProperties`}>
+                            <ManageProperties />
+                        </AdminRoute>
+                    </Switch>
+                }
+                {user.email && !admin &&
+                    <Switch>
+                        <Route exact path={`${path}/payment`}>
+                            <Payment />
+                        </Route>
+                        <Route exact path={`${path}`}>
+                            <MyBuyingList />
+                        </Route>
+                        <Route exact path={`${path}/review`}>
+                            <Review />
+                        </Route>
+                    </Switch>
+                }
             </Box>
         </Box>
     );
