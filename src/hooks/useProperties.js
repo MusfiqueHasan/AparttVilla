@@ -7,7 +7,7 @@ const useProperties = (options) => {
     const [propertyInfo, setPropertyInfo] = useState([])
     useEffect(() => {
 
-        axios.get('http://localhost:5000/properties')
+        axios.get('https://lit-anchorage-11150.herokuapp.com/properties')
             .then(res => {
                 setPropertyInfo(res.data)
             })

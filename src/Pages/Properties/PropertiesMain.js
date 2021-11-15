@@ -30,7 +30,7 @@ const PropertiesMain = () => {
     }
     const handleSubmit = e => {
 
-        // axios.post('http://localhost:5000/properties', property)
+        // axios.post('https://lit-anchorage-11150.herokuapp.com/properties', property)
         //     .then(res => { setProperty({}) })
 
         e.preventDefault()
@@ -41,7 +41,7 @@ const PropertiesMain = () => {
             <Container>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={8} sx={{ mt: 10 }}>
-                        <Box sx={{ boxShadow: 3, p: 5, my:10}}>
+                        <Box sx={{ boxShadow: 3, p: 5, my: 10 }}>
                             <form onSubmit={handleSubmit} >
                                 <Box>
                                     <TextField

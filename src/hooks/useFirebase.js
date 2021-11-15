@@ -17,7 +17,7 @@ const useFirebase = () => {
     const [token, setToken] = useState('')
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
-   
+
 
     const registerUser = (email, password, name, history) => {
         setIsLoading(true)
@@ -69,7 +69,7 @@ const useFirebase = () => {
                 const user = result.user;
                 savedUserForGoogle(user.email, user.displayName)
                 setAuthError('')
-                const destination =  '/dashboard'
+                const destination = '/dashboard'
                 history.replace(destination)
 
             }).catch((error) => {
@@ -99,7 +99,7 @@ const useFirebase = () => {
     }, [auth])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/users/${user.email}`)
+        axios.get(`https://lit-anchorage-11150.herokuapp.com/users/${user.email}`)
             .then(res => {
                 setAdmin(res.data.admin)
             })
@@ -116,14 +116,14 @@ const useFirebase = () => {
 
     const savedUser = (email, displayName) => {
         const user = { email, displayName };
-        axios.post('http://localhost:5000/users', user)
+        axios.post('https://lit-anchorage-11150.herokuapp.com/users', user)
             .then(res => {
 
             })
     }
     const savedUserForGoogle = (email, displayName) => {
         const user = { email, displayName };
-        axios.put('http://localhost:5000/users', user)
+        axios.put('https://lit-anchorage-11150.herokuapp.com/users', user)
             .then(res => {
 
             })

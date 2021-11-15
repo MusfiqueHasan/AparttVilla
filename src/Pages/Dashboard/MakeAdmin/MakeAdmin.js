@@ -17,7 +17,7 @@ const MakeAdmin = () => {
     }
 
     const handleAdminSubmit = (e) => {
-        axios.put('http://localhost:5000/users/admin', { email }, { headers: { 'authorization': `Bearer ${token}` } })
+        axios.put('https://lit-anchorage-11150.herokuapp.com/users/admin', { email }, { headers: { 'authorization': `Bearer ${token}` } })
             .then(res => {
                 if (res.data.modifiedCount) {
                     setSuccess(true)
@@ -27,16 +27,16 @@ const MakeAdmin = () => {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:5000/users')
+        axios.get('https://lit-anchorage-11150.herokuapp.com/users')
             .then(res => {
                 setAllEmail(res.data)
             })
     }, [])
-    
+
     return (
         <CommonPage title={'Make Admin'}>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Box sx={{width:'60%'}}>
+                <Box sx={{ width: '60%' }}>
                     <Typography sx={{ my: 5 }}>
                         <span style={{ fontWeight: 'bold', marginRight: '5px' }}>Admin:</span>
                         {user.email}

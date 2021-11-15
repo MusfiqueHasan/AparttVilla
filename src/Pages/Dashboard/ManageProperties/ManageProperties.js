@@ -31,7 +31,7 @@ const ManageProperties = () => {
 
     const handleOpen = (id) => {
         console.log(id)
-        axios.get(`http://localhost:5000/properties/${id}`)
+        axios.get(`https://lit-anchorage-11150.herokuapp.com/properties/${id}`)
             .then(res => {
                 setUpdateInfo(res.data)
                 setProperty(res.data)
@@ -48,7 +48,7 @@ const ManageProperties = () => {
 
     const handleUpdate = (e) => {
         console.log(updateInfo)
-        axios.put(`http://localhost:5000/properties/${property._id}`, updateInfo)
+        axios.put(`https://lit-anchorage-11150.herokuapp.com/properties/${property._id}`, updateInfo)
             .then(res => { })
         e.preventDefault()
     }
@@ -56,7 +56,7 @@ const ManageProperties = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm("are you sure you want to delete")
         if (proceed) {
-            axios.delete(`http://localhost:5000/properties/${id}`)
+            axios.delete(`https://lit-anchorage-11150.herokuapp.com/properties/${id}`)
                 .then(res => {
 
                     if (res.data.deletedCount > 0) {

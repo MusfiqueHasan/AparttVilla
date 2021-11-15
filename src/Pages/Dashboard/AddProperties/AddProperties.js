@@ -25,7 +25,7 @@ const AddProperties = () => {
     }
     const handleSubmit = e => {
 
-        axios.post('http://localhost:5000/properties', property)
+        axios.post('https://lit-anchorage-11150.herokuapp.com/properties', property)
             .then(res => { setProperty({}) })
 
         e.preventDefault()

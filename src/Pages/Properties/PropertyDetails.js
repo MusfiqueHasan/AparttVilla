@@ -18,7 +18,7 @@ const PropertyDetails = () => {
     const newBuyingList = { image, location, name, propertySize, bedrooms, baths, balcony, price }
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/properties/${id}`)
+        axios.get(`https://lit-anchorage-11150.herokuapp.com/properties/${id}`)
             .then(res => {
                 setProperty(res.data)
             })
@@ -34,7 +34,7 @@ const PropertyDetails = () => {
         newBuyingList.userEmail = user?.email
         newBuyingList.address = address
         newBuyingList.phoneNumber = phone
-        axios.post('http://localhost:5000/buyingList', newBuyingList)
+        axios.post('https://lit-anchorage-11150.herokuapp.com/buyingList', newBuyingList)
             .then(res => { })
         e.preventDefault()
     }

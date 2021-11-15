@@ -8,7 +8,7 @@ import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import axios from 'axios';
 const Review = () => {
-    const {  user } = useAuth()
+    const { user } = useAuth()
 
     const [review, setReview] = useState('')
     const [rating, setRating] = useState('')
@@ -29,7 +29,7 @@ const Review = () => {
         if (!user.photoURL) {
             user.photoURL = imageURL
         }
-        axios.post('http://localhost:5000/reviews',
+        axios.post('https://lit-anchorage-11150.herokuapp.com/reviews',
             {
                 name: user.displayName,
                 email: user.email,

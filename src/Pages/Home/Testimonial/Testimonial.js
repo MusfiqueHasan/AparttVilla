@@ -10,7 +10,7 @@ const Testimonial = () => {
     const [reviewInfo, setReviewInfo] = useState([])
     useEffect(() => {
 
-        axios.get('http://localhost:5000/reviews')
+        axios.get('https://lit-anchorage-11150.herokuapp.com/reviews')
             .then(res => {
                 setReviewInfo(res.data)
             })
@@ -48,7 +48,7 @@ const Testimonial = () => {
                                         {review.review}
                                     </Typography>
                                     <Box sx={{ my: 2 }}>
-                                        <img src={review.image } alt="" width={70} style={{ borderRadius: '50%', }} />
+                                        <img src={review.image} alt="" width={70} style={{ borderRadius: '50%', }} />
                                     </Box>
                                     <Typography>{review.name}</Typography>
                                     <Rating name="half-rating-read" defaultValue={review.rating} precision={0.5} readOnly />

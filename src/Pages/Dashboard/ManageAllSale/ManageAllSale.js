@@ -11,7 +11,7 @@ const ManageAllSale = () => {
     const [status, setStatus] = useState('on going')
 
     useEffect(() => {
-        axios.get('http://localhost:5000/buyingList')
+        axios.get('https://lit-anchorage-11150.herokuapp.com/buyingList')
             .then(res => {
                 setAllSales(res.data)
             })
