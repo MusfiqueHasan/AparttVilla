@@ -39,10 +39,6 @@ const useStyles = makeStyles({
         color: '#006266'
 
     },
-
-
-
-
 })
 
 const Dashboard = (props) => {
@@ -223,6 +219,9 @@ const Dashboard = (props) => {
                             <MakeAdmin />
                         </AdminRoute>
                         <AdminRoute exact path={`${path}/manageProperties`}>
+                            <ManageProperties />
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/manageProperties/:id`}>
                             <ManageProperties />
                         </AdminRoute>
                     </Switch>

@@ -13,7 +13,7 @@ const useProperties = (options) => {
             })
 
     }, [])
-    return options ? [propertyInfo.slice(0, 6)] : [propertyInfo]
+    return options ? [propertyInfo.slice(0, 6)] : [propertyInfo, setPropertyInfo]
 };
 
 export default useProperties;

@@ -13,7 +13,7 @@ const Review = () => {
     const [review, setReview] = useState('')
     const [rating, setRating] = useState('')
 
-    const currencies = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+    const ratings = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
 
     const handleReviewField = event => {
         console.log(event.target.value)
@@ -95,7 +95,6 @@ const Review = () => {
                         sx={{ width: '40%', my: 1 }}
                         id="outlined-select-currency"
                         select
-
                         onChange={handleRatingField}
                         InputProps={{
                             startAdornment: (
@@ -105,7 +104,7 @@ const Review = () => {
                             ),
                         }}
                     >
-                        {currencies.map((option) => (
+                        {ratings.map((option) => (
                             <MenuItem value={option}>
                                 {option}
                             </MenuItem>

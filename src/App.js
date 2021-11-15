@@ -6,11 +6,14 @@ import {
 // import './App.css';
 import AuthProvider from "./context/AuthProvider";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import ManageProperties from "./Pages/Dashboard/ManageProperties/ManageProperties";
 import Home from './Pages/Home/Home/Home';
 import LoginMain from "./Pages/Login/LoginMain/LoginMain";
 import Register from "./Pages/Login/Register/Register";
+import Error from "./Pages/PageNotFound/Error";
 import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 import PropertiesMain from "./Pages/Properties/PropertiesMain";
+import PropertyDetails from "./Pages/Properties/PropertyDetails";
 
 function App() {
   return (
@@ -33,8 +36,14 @@ function App() {
             <PrivateRoute path="/dashboard">
               <Dashboard />
             </PrivateRoute>
+            <PrivateRoute path="/properties/:id">
+              <PropertyDetails />
+            </PrivateRoute>
             <Route path="/properties">
               <PropertiesMain />
+            </Route>
+            <Route path="*">
+              <Error />
             </Route>
           </Switch>
         </Router>

@@ -3,19 +3,22 @@ import { Box } from '@mui/system';
 import LoopIcon from '@mui/icons-material/Loop';
 import { Button, Container, Divider, Grid, Typography } from '@mui/material';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import Properties from '../../Properties/Properties';
 import useProperties from '../../../hooks/useProperties';
 
 const PropertiesInHome = () => {
     const [propertyInfo] = useProperties(true)
-
+    const history = useHistory()
+    const handleServiceDetails = (id) => {
+        history.push(`/properties/${id}`)
+    }
     return (
         <Box style={{ backgroundColor: '#f5f6fa' }}>
             <Container sx={{ py: 3 }}  >
                 <Grid container spacing={2} sx={{}}>
                     {
-                        propertyInfo.map(property => <Properties property={property} />)
+                        propertyInfo.map(property => <Properties property={property} handleServiceDetails={handleServiceDetails}/>)
 
                     }
 
