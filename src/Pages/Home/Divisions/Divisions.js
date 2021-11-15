@@ -52,12 +52,16 @@ const Divisions = () => {
 
     useEffect(() => {
 
-        axios.get('http://localhost:5000/division')
+        axios.get('https://lit-anchorage-11150.herokuapp.com/division')
             .then(res => {
                 console.log(res.data)
                 setDivision(res.data)
             })
     }, [])
+
+    const handleDivision = (id) => {
+
+    }
 
     return (
         <Grid container spacing={5} sx={isMobile ? {} : { my: 20 }}>
@@ -68,14 +72,14 @@ const Divisions = () => {
                     {
                         division.map(div => {
                             return (
-                                <Box >
-                                    <div className={classes.card} 
-                                    style={{
-                                        background: `linear-gradient(15deg,rgba(11, 59, 27, 0.76) 20%, transparent 50% ), url(${div.image}) `,
-                                        backgroundPosition:'center',
-                                        backgroundRepeat:'no-repeat',
-                                        backgroundSize: 'cover'
-                                    }}>
+                                <Box onClick={() => { handleDivision(div._id) }}>
+                                    <div className={classes.card}
+                                        style={{
+                                            background: `linear-gradient(15deg,rgba(11, 59, 27, 0.76) 20%, transparent 50% ), url(${div.image}) `,
+                                            backgroundPosition: 'center',
+                                            backgroundRepeat: 'no-repeat',
+                                            backgroundSize: 'cover'
+                                        }}>
                                         <Typography style={{ color: 'white', marginLeft: '30px', fontSize: '25px', fontWeight: 'bold', fontFamily: 'sans-serif' }}>
                                             {div.division}</Typography>
                                         <Typography style={{ color: 'white', marginLeft: '30px', marginBottom: '30px' }}>All Properties</Typography>

@@ -14,7 +14,7 @@ const MyBuyingList = () => {
     const [userOrder, setUserOrder] = useState([])
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/buyingList/${user?.email}`)
+        axios.get(`https://lit-anchorage-11150.herokuapp.com/buyingList/${user?.email}`)
             .then(res => {
                 setUserOrder(res.data)
             })
@@ -24,7 +24,7 @@ const MyBuyingList = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm("are you sure you want to delete")
         if (proceed) {
-            axios.delete(`http://localhost:5000/buyingList/${id}`)
+            axios.delete(`https://lit-anchorage-11150.herokuapp.com/buyingList/${id}`)
                 .then(res => {
 
                     if (res.data.deletedCount > 0) {

@@ -25,7 +25,7 @@ const AddDivision = () => {
     }
     const handleSubmit = e => {
 
-        axios.post('http://localhost:5000/division', property)
+        axios.post('https://lit-anchorage-11150.herokuapp.com/division', property)
             .then(res => { setProperty({}) })
 
         e.preventDefault()

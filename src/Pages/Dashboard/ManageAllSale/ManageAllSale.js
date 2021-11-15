@@ -22,7 +22,7 @@ const ManageAllSale = () => {
     }
 
     const handleStatus = (id) => {
-        axios.put(`http://localhost:5000/buyingList/${id}`, { status: "Approved" })
+        axios.put(`https://lit-anchorage-11150.herokuapp.com/buyingList/${id}`, { status: "Approved" })
             .then((res) => {
                 // setIsLoading(false)
                 getData()

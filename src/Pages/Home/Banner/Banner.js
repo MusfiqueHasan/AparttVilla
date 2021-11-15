@@ -67,7 +67,7 @@ const Banner = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await axios.post('http://localhost:5000/filter', {
+        await axios.post('https://lit-anchorage-11150.herokuapp.com/filter', {
             division, bedrooms, baths, balcony
         })
             .then(res => {

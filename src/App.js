@@ -39,6 +39,9 @@ function App() {
             <PrivateRoute path="/properties/:id">
               <PropertyDetails />
             </PrivateRoute>
+            <PrivateRoute path="/division/:id">
+              <PropertiesMain />
+            </PrivateRoute>
             <Route path="/properties">
               <PropertiesMain />
             </Route>
@@ -48,7 +51,7 @@ function App() {
           </Switch>
         </Router>
       </AuthProvider>
-      
+
     </div>
   );
 }
