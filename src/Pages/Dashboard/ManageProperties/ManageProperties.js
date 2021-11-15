@@ -4,8 +4,6 @@ import useProperties from '../../../hooks/useProperties';
 import CommonPage from '../../SharedPage/CommonPage/CommonPage';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 

@@ -4,16 +4,19 @@ import { Box } from '@mui/system';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Navbar from '../SharedPage/Navbar/Navbar';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import useAuth from '../../hooks/useAuth';
+import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 const PropertyDetails = () => {
     const { id } = useParams()
-    const { user } = useAuth()
+    const { user, admin } = useAuth()
     const [property, setProperty] = useState({})
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
+    const history = useHistory()
+    let { path, url } = useRouteMatch();
     const { image, location, name, propertySize, bedrooms, baths, balcony, price } = property
     const newBuyingList = { image, location, name, propertySize, bedrooms, baths, balcony, price }
     useEffect(() => {
@@ -34,8 +37,15 @@ const PropertyDetails = () => {
         newBuyingList.userEmail = user?.email
         newBuyingList.address = address
         newBuyingList.phoneNumber = phone
-        axios.post('https://lit-anchorage-11150.herokuapp.com/buyingList', newBuyingList)
-            .then(res => { })
+        newBuyingList.status = 'pending..'
+
+        axios.post('http://localhost:5000/buyingList/', newBuyingList)
+            .then(res => {
+                if (!admin){
+                    history.push('/dashboard')
+                }
+
+             })
         e.preventDefault()
     }
     console.log(property)

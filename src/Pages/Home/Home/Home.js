@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../../Footer/Footer';
 import Navbar from '../../SharedPage/Navbar/Navbar';
 import Banner from '../Banner/Banner';
 import Divisions from '../Divisions/Divisions';
@@ -15,6 +16,7 @@ const Home = () => {
             <PropertiesBanner />
             <PropertiesInHome />
             <Testimonial />
+            <Footer />
         </div>
     );
 };

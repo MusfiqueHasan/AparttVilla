@@ -8,6 +8,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import BedIcon from '@mui/icons-material/Bed';
 import BalconyIcon from '@mui/icons-material/Balcony';
 import BathroomIcon from '@mui/icons-material/Bathroom';
+import Footer from '../Footer/Footer';
 
 
 const PropertiesMain = () => {
@@ -146,6 +147,7 @@ const PropertiesMain = () => {
 
                 </Grid>
             </Container>
+            <Footer />
 
         </>
     );

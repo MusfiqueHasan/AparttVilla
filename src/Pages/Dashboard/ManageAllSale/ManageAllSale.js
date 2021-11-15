@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, TextField } from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, TextField, Button } from '@mui/material';
 import useProperties from '../../../hooks/useProperties';
 import CommonPage from '../../SharedPage/CommonPage/CommonPage';
 import axios from 'axios';
@@ -11,15 +11,22 @@ const ManageAllSale = () => {
     const [status, setStatus] = useState('on going')
 
     useEffect(() => {
+        getData()
+    }, [])
+
+    const getData = () => {
         axios.get('https://lit-anchorage-11150.herokuapp.com/buyingList')
             .then(res => {
                 setAllSales(res.data)
             })
-    }, [])
+    }
 
-    const handleChange = (e) => {
-        console.log(e.target.value)
-        setStatus(e.target.value)
+    const handleStatus = (id) => {
+        axios.put(`http://localhost:5000/buyingList/${id}`, { status: "Approved" })
+            .then((res) => {
+                // setIsLoading(false)
+                getData()
+            });
     }
     return (
         <CommonPage title={'Manage All Sales'}>
@@ -50,21 +57,21 @@ const ManageAllSale = () => {
                                     <TableCell >{row.location}</TableCell>
                                     <TableCell >{row.price}</TableCell>
                                     <TableCell >
-                                        <TextField
-                                            sx={{ width: '100%' }}
-                                            id="outlined-select-currency"
-                                            variant="standard"
-                                            select
-                                            defaultValue={status}
-                                            onChange={handleChange}
+                                        <Button 
+                                        onClick={() => handleStatus(row._id)}
+                                        style={
+                                            row.status === "Approved" ?
+                                            { color: '#27ae60', fontWeight: 'bold',background:'#ecf0f1'}
+                                            :
+                                            { color: 'black', fontWeight: 'bold',background:'#ecf0f1' }
+                                        } 
 
                                         >
-                                            {['on going', 'pending', 'done'].map((option) => (
-                                                <MenuItem value={option}>
-                                                    {option}
-                                                </MenuItem>
-                                            ))}
-                                        </TextField>
+                                            {
+                                                row.status === 'Approved' ? 'Approved' : ' Approval'
+                                            }
+
+                                        </Button>
 
                                     </TableCell>
                                 </TableRow>
