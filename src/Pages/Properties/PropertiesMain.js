@@ -1,5 +1,5 @@
 import { Box, Button, Container, Grid, InputAdornment, MenuItem, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useProperties from '../../hooks/useProperties';
 import Navbar from '../SharedPage/Navbar/Navbar';
@@ -9,32 +9,62 @@ import BedIcon from '@mui/icons-material/Bed';
 import BalconyIcon from '@mui/icons-material/Balcony';
 import BathroomIcon from '@mui/icons-material/Bathroom';
 import Footer from '../Footer/Footer';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 
-const PropertiesMain = () => {
+const PropertiesMain = (props) => {
+    const location = useLocation()
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    const division = ['dhaka', 'chittagong', 'rajshahi', 'barishal', 'shylet', 'khulna']
-    const [search, setSearch] = useState({})
+    const divisions = ['dhaka', 'chittagong', 'rajshahi', 'barishal', 'shylet', 'khulna']
+    const [division, setDivision] = useState('')
+    const [bedrooms, setBed] = useState('')
+    const [baths, setBath] = useState('')
+    const [balcony, setBalcony] = useState('')
     const [propertyInfo] = useProperties(false)
+    const [data, setData] = useState(propertyInfo)
     const history = useHistory()
     const handlePropertyDetails = (id) => {
         history.push(`/properties/${id}`)
     }
 
-    const handleOnchange = e => {
-        const field = e.target.name
-        const value = e.target.value
-        const newLoginData = { ...search };
-        newLoginData[field] = value;
-        setSearch(newLoginData)
 
+    const handleDivisionField = event => {
+        console.log(event.target.value)
+        setDivision(event.target.value);
     }
-    const handleSubmit = e => {
+    const handleBedField = event => {
+        console.log(event.target.value)
+        setBed(event.target.value);
+    }
+    const handleBathField = event => {
+        console.log(event.target.value)
+        setBath(event.target.value);
+    }
+    const handleBalconyField = event => {
+        console.log(event.target.value)
+        setBalcony(event.target.value);
+    }
+    useEffect(() => {
+        if (location?.state?.data && location.state.data.length > 0) {
+            setData(location.state.data)
+        } else {
+            setData(propertyInfo)
+        }
 
-        // axios.post('https://lit-anchorage-11150.herokuapp.com/properties', property)
-        //     .then(res => { setProperty({}) })
+    }, [propertyInfo, location?.state?.data])
 
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        await axios.post('http://localhost:5000/filter', {
+            division, bedrooms, baths, balcony
+        })
+            .then(res => {
+                setData(res.data)
+            }
+            )
+
+
     }
     return (
         <>
@@ -49,7 +79,8 @@ const PropertiesMain = () => {
                                         sx={{ width: '80%', my: 1 }}
                                         id="outlined-select-currency"
                                         select
-                                        onChange={handleOnchange}
+                                        required
+                                        onChange={handleDivisionField}
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
@@ -58,7 +89,7 @@ const PropertiesMain = () => {
                                             ),
                                         }}
                                     >
-                                        {division.map((option) => (
+                                        {divisions.map((option) => (
                                             <MenuItem value={option}>
                                                 {option}
                                             </MenuItem>
@@ -68,7 +99,8 @@ const PropertiesMain = () => {
                                         sx={{ width: '26%', my: 1 }}
                                         id="outlined-select-currency"
                                         select
-                                        onChange={handleOnchange}
+                                        required
+                                        onChange={handleBedField}
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
@@ -87,7 +119,8 @@ const PropertiesMain = () => {
                                         sx={{ width: '26%', m: 1 }}
                                         id="outlined-select-currency"
                                         select
-                                        onChange={handleOnchange}
+                                        required
+                                        onChange={handleBathField}
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
@@ -106,7 +139,8 @@ const PropertiesMain = () => {
                                         sx={{ width: '26%', my: 1 }}
                                         id="outlined-select-currency"
                                         select
-                                        onChange={handleOnchange}
+                                        required
+                                        onChange={handleBalconyField}
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
@@ -133,7 +167,8 @@ const PropertiesMain = () => {
                             </form>
                         </Box>
                         {
-                            propertyInfo.map(property => <AllProperties
+
+                            data.map(property => <AllProperties
                                 property={property}
                                 handlePropertyDetails={handlePropertyDetails}
                             />)

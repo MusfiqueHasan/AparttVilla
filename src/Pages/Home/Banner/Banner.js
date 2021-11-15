@@ -7,6 +7,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import BedIcon from '@mui/icons-material/Bed';
 import BalconyIcon from '@mui/icons-material/Balcony';
 import BathroomIcon from '@mui/icons-material/Bathroom';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
     banner: {
@@ -38,23 +40,41 @@ const Banner = () => {
     const classes = useStyles()
     const isMobile = useMediaQuery('(max-width:600px)')
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    const division = ['dhaka', 'chittagong', 'rajshahi', 'barishal', 'shylet', 'khulna']
-    const [search, setSearch] = useState({})
-    const handleOnchange = e => {
-        const field = e.target.name
-        const value = e.target.value
-        const newLoginData = { ...search };
-        newLoginData[field] = value;
-        setSearch(newLoginData)
+    const divisions = ['dhaka', 'chittagong', 'rajshahi', 'barishal', 'shylet', 'khulna']
+    const [division, setDivision] = useState('')
+    const [bedrooms, setBed] = useState('')
+    const [baths, setBath] = useState('')
+    const [balcony, setBalcony] = useState('')
+    const history = useHistory()
 
+
+    const handleDivisionField = event => {
+        console.log(event.target.value)
+        setDivision(event.target.value);
+    }
+    const handleBedField = event => {
+        console.log(event.target.value)
+        setBed(event.target.value);
+    }
+    const handleBathField = event => {
+        console.log(event.target.value)
+        setBath(event.target.value);
+    }
+    const handleBalconyField = event => {
+        console.log(event.target.value)
+        setBalcony(event.target.value);
     }
 
-    const handleSubmit = e => {
-
-        // axios.post('https://lit-anchorage-11150.herokuapp.com/properties', property)
-        //     .then(res => { setProperty({}) })
-
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        await axios.post('http://localhost:5000/filter', {
+            division, bedrooms, baths, balcony
+        })
+            .then(res => {
+                history.push({ pathname: '/properties', state: { data: res.data } })
+            }
+            )
+        
     }
 
     return (
@@ -70,15 +90,17 @@ const Banner = () => {
                     In the heart of Brooklyn, in a vibrant neighborhood just east of Prospect Park,
                     stands an eight-story, full-service, strikingly beautiful apartment building  eight-story, full-service, strikingly beautiful apartment building
                 </Typography>
-                <Paper elevation={0} sx={{ p:5, width:'49%'}}>
+                <Paper elevation={0} sx={{ p: 5, width: '49%' }}>
 
-                    <form onSubmit={handleSubmit} >
+                    <form onSubmit={handleSubmit}>
                         <Box>
                             <TextField
                                 sx={{ width: '100%', my: 1, background: 'white' }}
                                 id="outlined-select-currency"
                                 select
-                                onChange={handleOnchange}
+                                required
+                                name='division'
+                                onChange={handleDivisionField}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -87,7 +109,7 @@ const Banner = () => {
                                     ),
                                 }}
                             >
-                                {division.map((option) => (
+                                {divisions.map((option) => (
                                     <MenuItem value={option}>
                                         {option}
                                     </MenuItem>
@@ -97,7 +119,9 @@ const Banner = () => {
                                 sx={{ width: '33%', my: 1, background: 'white' }}
                                 id="outlined-select-currency"
                                 select
-                                onChange={handleOnchange}
+                                required
+                                name="bedrooms"
+                                onChange={handleBedField}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -116,7 +140,9 @@ const Banner = () => {
                                 sx={{ width: '32%', m: 1, background: 'white' }}
                                 id="outlined-select-currency"
                                 select
-                                onChange={handleOnchange}
+                                required
+                                name='baths'
+                                onChange={handleBathField}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -135,7 +161,9 @@ const Banner = () => {
                                 sx={{ width: '32%', my: 1, background: 'white' }}
                                 id="outlined-select-currency"
                                 select
-                                onChange={handleOnchange}
+                                required
+                                name='balcony'
+                                onChange={handleBalconyField}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -156,6 +184,7 @@ const Banner = () => {
                             sx={{ width: '20%', my: 1 }}
                             variant="contained"
                             type="submit"
+
                         >
                             search
                         </Button>
