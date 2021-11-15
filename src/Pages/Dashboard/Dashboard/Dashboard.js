@@ -27,6 +27,7 @@ import MyBuyingList from '../MyBuyingList/MyBuyingList';
 import Review from '../Review/Review';
 import { makeStyles } from '@mui/styles'
 import AddProperties from '../AddProperties/AddProperties';
+import AddDivision from '../AddDivision/AddDivision';
 
 
 
@@ -122,6 +123,9 @@ const Dashboard = (props) => {
                         <Link to={`${url}/addProperties`} className={classes.allLink}>
                             <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Add Property</Button>
                         </Link>
+                        <Link to={`${url}/adddivision`} className={classes.allLink}>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Add Division</Button>
+                        </Link>
                         <Link to={`${url}/makeAdmin`} className={classes.allLink}>
                             <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Make Admin</Button>
                         </Link>
@@ -214,6 +218,9 @@ const Dashboard = (props) => {
                         </AdminRoute>
                         <AdminRoute exact path={`${path}/addProperties`}>
                             <AddProperties />
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/addDivision`}>
+                            <AddDivision />
                         </AdminRoute>
                         <AdminRoute exact path={`${path}/makeAdmin`}>
                             <MakeAdmin />
