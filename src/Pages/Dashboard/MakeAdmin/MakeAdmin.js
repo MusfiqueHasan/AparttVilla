@@ -50,7 +50,7 @@ const MakeAdmin = () => {
                             variant="standard"
                             id="outlined-select-currency"
                             select
-                            value={user.email}
+                            // value={user.email}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">

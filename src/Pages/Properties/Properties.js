@@ -76,7 +76,7 @@ const Properties = ({ property, handleServiceDetails }) => {
                         </Fab>
                     </Button>
                     <Typography style={{ fontSize: '10px', fontWeight: 'bolder', marginTop: '5px' }}>
-                        For more details click here
+                        For BUY PROPERTY click here
                     </Typography>
                 </Box>
             </Card>

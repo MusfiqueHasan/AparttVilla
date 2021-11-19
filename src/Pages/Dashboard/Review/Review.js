@@ -44,11 +44,15 @@ const Review = () => {
     }
     return (
         <CommonPage title={'Review'}>
-            <Box>
+            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                 <form onSubmit={handleSubmit}
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column'
+                   
+                        style={{
+                            width: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center'
+                       
                     }}>
                     <TextField
                         sx={{ width: '40%' }}

@@ -18,7 +18,10 @@ import AdminRoute from '../AdminRoute/AdminRoute';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import logo from '../../../images/logo.webp'
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import CommonPage from '../../SharedPage/CommonPage/CommonPage';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import GridViewIcon from '@mui/icons-material/GridView';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ManageAllSale from '../ManageAllSale/ManageAllSale';
 import ManageProperties from '../ManageProperties/ManageProperties';
@@ -69,7 +72,7 @@ const Dashboard = (props) => {
                     style={{ backgroundColor: '#dfe6e9', borderRadius: '10px' }}
                     sx={{ mx: 2, py: 2, }}
                 >
-                    <NavLink to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
+                    <NavLink to="/dashboard" style={{ textDecoration: 'none', color: 'black' }}>
                         <Tooltip title="profile" placement="bottom">
                             <Box style={{ display: 'flex', alignItems: 'center', }}>
                                 {user.photoURL ?
@@ -92,7 +95,7 @@ const Dashboard = (props) => {
 
             }
 
-            <Box style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', marginTop: '50px' }}>
+            <Box style={{ height: '80%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', marginTop: '50px' }}>
 
                 {user.email && !admin && <Box style={{ display: 'flex', flexDirection: 'column', }}>
 
@@ -118,19 +121,34 @@ const Dashboard = (props) => {
                 {
                     admin && <Box style={{ display: 'flex', flexDirection: 'column', }}>
                         <Link to={`${url}`} className={classes.allLink}>
-                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Manage All Sales</Button>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>
+                                <ListAltIcon sx={{ m: 1 }} />
+                                Manage All Sales
+                            </Button>
                         </Link>
                         <Link to={`${url}/addProperties`} className={classes.allLink}>
-                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Add Property</Button>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>
+                                <AddCircleOutlineIcon sx={{ m: 1 }} />
+                                Add Property
+                            </Button>
                         </Link>
                         <Link to={`${url}/adddivision`} className={classes.allLink}>
-                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Add Division</Button>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>
+                                <AddCircleOutlineIcon sx={{ m: 1 }} />
+                                Add Division
+                            </Button>
                         </Link>
                         <Link to={`${url}/makeAdmin`} className={classes.allLink}>
-                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Make Admin</Button>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>
+                                <PersonAddAltIcon sx={{ m: 1 }} />
+                                Make Admin
+                            </Button>
                         </Link>
                         <Link to={`${url}/manageProperties`} className={classes.allLink}>
-                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>Manage Properties</Button>
+                            <Button color="inherit" style={{ textTransform: 'none', fontWeight: 'bold' }}>
+                                <GridViewIcon sx={{ m: 1 }}/>
+                                Manage Properties
+                            </Button>
                         </Link>
                     </Box>
 

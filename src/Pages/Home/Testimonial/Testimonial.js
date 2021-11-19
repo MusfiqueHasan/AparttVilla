@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Rating, Typography } from '@mui/material';
+import { Container, Paper, Rating, Typography } from '@mui/material';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import Slider from "react-slick";
 import { Box } from '@mui/system';
@@ -43,16 +43,18 @@ const Testimonial = () => {
 
                         return (
                             <Container>
-                                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '300px', marginX: '100px' }}>
-                                    <Typography sx={{ textAlign: 'center' }}>
-                                        {review.review}
-                                    </Typography>
-                                    <Box sx={{ my: 2 }}>
-                                        <img src={review.image} alt="" width={70} style={{ borderRadius: '50%', }} />
+                                <Paper elevation={3} sx={{p:5}}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '300px', marginX: '100px' }}>
+                                        <Typography sx={{ textAlign: 'center' }}>
+                                            {review.review}
+                                        </Typography>
+                                        <Box sx={{ my: 2 }}>
+                                            <img src={review.image} alt="" width={70} style={{ borderRadius: '50%', }} />
+                                        </Box>
+                                        <Typography>{review.name}</Typography>
+                                        <Rating name="half-rating-read" defaultValue={review.rating} precision={0.5} readOnly />
                                     </Box>
-                                    <Typography>{review.name}</Typography>
-                                    <Rating name="half-rating-read" defaultValue={review.rating} precision={0.5} readOnly />
-                                </Box>
+                                </Paper>
                             </Container>
 
                         )

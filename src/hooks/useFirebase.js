@@ -50,7 +50,7 @@ const useFirebase = () => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const destination = '/dashboard'
+                const destination = location?.state?.from || '/dashboard'
                 history.replace(destination)
                 setAuthError('')
 
@@ -69,7 +69,7 @@ const useFirebase = () => {
                 const user = result.user;
                 savedUserForGoogle(user.email, user.displayName)
                 setAuthError('')
-                const destination = '/dashboard'
+                const destination = location?.state?.from || '/dashboard'
                 history.replace(destination)
 
             }).catch((error) => {

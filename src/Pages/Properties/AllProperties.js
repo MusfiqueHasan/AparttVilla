@@ -11,8 +11,8 @@ import { Box } from '@mui/system';
 const AllProperties = ({ property, handlePropertyDetails }) => {
     const { _id, image, location, name, propertySize, bedrooms, baths, balcony, price } = property
     return (
-        <Grid container spacing={2} sx={{ my: 3 }}>
-        <Grid item xs={12} md={12}>
+
+        <Grid item xs={12} md={6}>
 
             <Card sx={{ display: 'flex' }}>
                 <CardMedia
@@ -72,15 +72,15 @@ const AllProperties = ({ property, handlePropertyDetails }) => {
                                 </Fab>
                             </Button>
                             <Typography style={{ fontSize: '10px', fontWeight: 'bolder', marginTop: '5px' }}>
-                                For more details click here
+                                For BUY PROPERTY click here
                             </Typography>
                         </Box>
                     </CardContent>
                 </Box>
 
             </Card>
+
         </Grid>
-    </Grid>
     );
 };
 

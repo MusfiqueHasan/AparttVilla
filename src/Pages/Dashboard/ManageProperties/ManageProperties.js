@@ -47,7 +47,7 @@ const ManageProperties = () => {
     const handleUpdate = (e) => {
         console.log(updateInfo)
         axios.put(`https://lit-anchorage-11150.herokuapp.com/properties/${property._id}`, updateInfo)
-            .then(res => { })
+            .then(res => {  handleClose()})
         e.preventDefault()
     }
 
@@ -61,6 +61,7 @@ const ManageProperties = () => {
                         alert('deleted successfully')
                         const remainingUser = propertyInfo.filter(user => user._id !== id)
                         setPropertyInfo(remainingUser)
+                       
                     }
                 })
         }

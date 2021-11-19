@@ -1,8 +1,9 @@
 
-import { Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Alert, Button, Container, Grid, Paper, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import axios from 'axios';
 import React, { useState } from 'react';
+import Footer from '../Footer/Footer'
 import { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Navbar from '../SharedPage/Navbar/Navbar';
@@ -16,7 +17,6 @@ const PropertyDetails = () => {
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
     const history = useHistory()
-    let { path, url } = useRouteMatch();
     const { image, location, name, propertySize, bedrooms, baths, balcony, price } = property
     const newBuyingList = { image, location, name, propertySize, bedrooms, baths, balcony, price }
     useEffect(() => {
@@ -34,18 +34,20 @@ const PropertyDetails = () => {
         setPhone(e.target.value)
     }
     const handleBuy = (e) => {
+
         newBuyingList.userEmail = user?.email
         newBuyingList.address = address
         newBuyingList.phoneNumber = phone
         newBuyingList.status = 'pending..'
 
-        axios.post('http://localhost:5000/buyingList/', newBuyingList)
+        axios.post('https://lit-anchorage-11150.herokuapp.com/buyingList/', newBuyingList)
             .then(res => {
-                if (!admin){
+                if (!admin) {
                     history.push('/dashboard')
                 }
 
-             })
+            })
+
         e.preventDefault()
     }
     console.log(property)
@@ -54,6 +56,7 @@ const PropertyDetails = () => {
             <Navbar />
             <Container>
                 <Grid container spacing={2} >
+
                     <Grid item xs={12} md={6} sx={{ mt: 20, }}>
                         <Paper elevation={3} sx={{ p: 7 }}>
                             <Box sx={{}}>
@@ -144,19 +147,29 @@ const PropertyDetails = () => {
                                 />
 
 
-                                <Button
+                                {admin && <Button
+                                    disabled
+                                    type="submit"
+                                    style={{ background: '#c8d6e5', color: 'white', marginTop: '33px' }}
+                                    sx={{ px: 3, py: 1, ml: 1 }}
+                                >
+                                    Buy now
+                                </Button>}
+                                {!admin && <Button
                                     type="submit"
                                     style={{ background: '#006266', color: 'white', marginTop: '33px' }}
                                     sx={{ px: 3, py: 1, ml: 1 }}
                                 >
                                     Buy now
-                                </Button>
+                                </Button>}
                             </form>
                         </Paper>
                     </Grid>
+                    
 
                 </Grid>
             </Container>
+            <Footer />
         </>
     );
 };

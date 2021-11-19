@@ -85,7 +85,7 @@ const AddDivision = () => {
                         variant="contained"
                         type="submit"
                     >
-                        send feedback
+                        add division
                     </Button>
                 </form>
             </Box>

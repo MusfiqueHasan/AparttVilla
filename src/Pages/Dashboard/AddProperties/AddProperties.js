@@ -216,7 +216,7 @@ const AddProperties = () => {
                         variant="contained"
                         type="submit"
                     >
-                        send feedback
+                        add property
                     </Button>
                 </form>
             </Box>

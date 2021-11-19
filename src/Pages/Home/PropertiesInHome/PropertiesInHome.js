@@ -14,11 +14,11 @@ const PropertiesInHome = () => {
         history.push(`/properties/${id}`)
     }
     return (
-        <Box style={{ backgroundColor: '#f5f6fa' }}>
+        <Box>
             <Container sx={{ py: 3 }}  >
                 <Grid container spacing={2} sx={{}}>
                     {
-                        propertyInfo.map(property => <Properties property={property} handleServiceDetails={handleServiceDetails}/>)
+                        propertyInfo.map(property => <Properties property={property} handleServiceDetails={handleServiceDetails} />)
 
                     }
 

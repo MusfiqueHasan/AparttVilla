@@ -69,119 +69,124 @@ const PropertiesMain = (props) => {
     return (
         <>
             <Navbar />
-            <Container>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={8} sx={{ mt: 10 }}>
-                        <Box sx={{ boxShadow: 3, p: 5, my: 10 }}>
-                            <form onSubmit={handleSubmit} >
-                                <Box>
-                                    <TextField
-                                        sx={{ width: '80%', my: 1 }}
-                                        id="outlined-select-currency"
-                                        select
-                                        required
-                                        onChange={handleDivisionField}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <LocationOnIcon />
-                                                </InputAdornment>
-                                            ),
-                                        }}
+            <Box sx={{ mx: 12 }}>
+                <Grid container spacing={2} sx={{}}>
+                    <Grid item xs={12} md={12} sx={{ mt: 10 }}>
+                        <Box sx={{display:'flex', justifyContent:'center'}}>
+                            <Box sx={{ boxShadow: 3, p: 5, my: 10, width: '70%' }}>
+                                <form onSubmit={handleSubmit} >
+                                    <Box>
+                                        <TextField
+                                            sx={{ width: '99%', my: 1 }}
+                                            id="outlined-select-currency"
+                                            select
+                                            required
+                                            onChange={handleDivisionField}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <LocationOnIcon />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        >
+                                            {divisions.map((option) => (
+                                                <MenuItem value={option}>
+                                                    {option}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+                                        <TextField
+                                            sx={{ width: '32%', my: 1 }}
+                                            id="outlined-select-currency"
+                                            select
+                                            required
+                                            onChange={handleBedField}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <BedIcon />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        >
+                                            {numbers.map((option) => (
+                                                <MenuItem value={option}>
+                                                    {option}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+                                        <TextField
+                                            sx={{ width: '32%', m: 1 }}
+                                            id="outlined-select-currency"
+                                            select
+                                            required
+                                            onChange={handleBathField}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <BathroomIcon />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        >
+                                            {numbers.map((option) => (
+                                                <MenuItem value={option}>
+                                                    {option}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+                                        <TextField
+                                            sx={{ width: '33%', my: 1 }}
+                                            id="outlined-select-currency"
+                                            select
+                                            required
+                                            onChange={handleBalconyField}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <BalconyIcon />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        >
+                                            {numbers.map((option) => (
+                                                <MenuItem value={option}>
+                                                    {option}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+                                    </Box>
+                                    <Button
+                                        style={{ backgroundColor: '#006266' }}
+                                        sx={{ width: '20%', my: 1 }}
+                                        variant="contained"
+                                        type="submit"
                                     >
-                                        {divisions.map((option) => (
-                                            <MenuItem value={option}>
-                                                {option}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                    <TextField
-                                        sx={{ width: '26%', my: 1 }}
-                                        id="outlined-select-currency"
-                                        select
-                                        required
-                                        onChange={handleBedField}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <BedIcon />
-                                                </InputAdornment>
-                                            ),
-                                        }}
-                                    >
-                                        {numbers.map((option) => (
-                                            <MenuItem value={option}>
-                                                {option}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                    <TextField
-                                        sx={{ width: '26%', m: 1 }}
-                                        id="outlined-select-currency"
-                                        select
-                                        required
-                                        onChange={handleBathField}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <BathroomIcon />
-                                                </InputAdornment>
-                                            ),
-                                        }}
-                                    >
-                                        {numbers.map((option) => (
-                                            <MenuItem value={option}>
-                                                {option}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                    <TextField
-                                        sx={{ width: '26%', my: 1 }}
-                                        id="outlined-select-currency"
-                                        select
-                                        required
-                                        onChange={handleBalconyField}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <BalconyIcon />
-                                                </InputAdornment>
-                                            ),
-                                        }}
-                                    >
-                                        {numbers.map((option) => (
-                                            <MenuItem value={option}>
-                                                {option}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
-                                </Box>
-                                <Button
-                                    style={{ backgroundColor: '#006266' }}
-                                    sx={{ width: '20%', my: 1 }}
-                                    variant="contained"
-                                    type="submit"
-                                >
-                                    search
-                                </Button>
-                            </form>
+                                        search
+                                    </Button>
+                                </form>
+                            </Box>
                         </Box>
-                        {
+                        <Grid container spacing={2} sx={{ my: 3 }}>
 
-                            data.map(property => <AllProperties
-                                property={property}
-                                handlePropertyDetails={handlePropertyDetails}
-                            />)
+                            {
 
-                        }
+                                data.map(property => <AllProperties
+                                    property={property}
+                                    handlePropertyDetails={handlePropertyDetails}
+                                />)
+
+                            }
+                        </Grid>
 
                     </Grid>
-                    <Grid item xs={12} mad={4}>
+                    {/* <Grid item xs={12} md={4}>
 
-                    </Grid>
+                    </Grid> */}
 
                 </Grid>
-            </Container>
+            </Box>
             <Footer />
 
         </>

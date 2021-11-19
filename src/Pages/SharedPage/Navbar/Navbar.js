@@ -68,7 +68,7 @@ const Navbar = () => {
                                 >
                                     logout
                                 </Button>
-                                <NavLink to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
+                                <NavLink to="/dashboard" style={{ textDecoration: 'none', color: 'black' }}>
                                     <Tooltip title="profile" placement="bottom">
                                         <Box style={{ display: 'flex', alignItems: 'center', }}>
                                             {user.photoURL ?
